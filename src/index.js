@@ -93,7 +93,7 @@ export default class Marker extends Component {
            onContextMenu={this.handleContextMenu}
            onMouseOver={this.handleMouseOver}
            onMouseOut={this.handleMouseOut}>
-        <img src={imageSrc} width={29} height={34} alt='' />
+        <img src={imageSrc} alt='' />
       </div>
     )
   }
