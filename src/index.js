@@ -1,11 +1,6 @@
 import { React, Inferno, Component } from './infact'
 import PropTypes from 'prop-types'
 
-import pin from './img/pin.png'
-import pinRetina from './img/pin@2x.png'
-import pinHover from './img/pin-hover.png'
-import pinHoverRetina from './img/pin-hover@2x.png'
-
 const imageOffset = {
   left: 15,
   top: 31
@@ -60,25 +55,6 @@ export default class Marker extends Component {
     return typeof this.props.hover === 'boolean' ? this.props.hover : this.state.hover
   }
 
-  image () {
-    return this.isRetina() ? (this.isHover() ? pinHoverRetina : pinRetina) : (this.isHover() ? pinHover : pin)
-  }
-
-  // lifecycle
-
-  componentDidMount () {
-    let images = this.isRetina() ? [
-      pinRetina, pinHoverRetina
-    ] : [
-      pin, pinHover
-    ]
-
-    images.forEach(image => {
-      let img = new window.Image()
-      img.src = image
-    })
-  }
-
   // delegators
 
   handleClick = (event) => {
@@ -102,7 +78,7 @@ export default class Marker extends Component {
   // render
 
   render () {
-    const { left, top, onClick } = this.props
+    const { left, top, onClick, imageSrc } = this.props
 
     const style = {
       position: 'absolute',
@@ -117,7 +93,7 @@ export default class Marker extends Component {
            onContextMenu={this.handleContextMenu}
            onMouseOver={this.handleMouseOver}
            onMouseOut={this.handleMouseOut}>
-        <img src={this.image()} width={29} height={34} alt='' />
+        <img src={imageSrc} width={29} height={34} alt='' />
       </div>
     )
   }
